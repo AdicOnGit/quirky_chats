@@ -1,0 +1,5 @@
+.env
+venv
+messages.json
+output
+default/default_video.mp4

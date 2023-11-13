@@ -1,0 +1,39 @@
+import openai
+
+openai.api_key = "your-api-key"
+openai.api_base = "http://zukijourney.xyzbot.net/v1"
+
+# response = openai.Embedding.create(input="cock and balls", model="balls")
+# print(response)
+# response = openai.Image.create(prompt="balls", n=1, size="1024x1024")
+# print(response)
+
+chat_completion = openai.ChatCompletion.create(
+    stream=True,  # can be true
+    model="gpt-4",  # "claude-2",
+    messages=[
+        {
+            "role": "user",
+            "content": 'List 20 common Japanese words.'
+        },
+    ],
+)
+
+for chunk in chat_completion:
+    print(chunk["choices"][0]["delta"]["content"], end="", flush=True)
+
+# js = {"input": "There are 50 books in a library. Sam decides to read 5 of the books. How many books are there now? If there are 45 books, say \"1\". Else, if there is the same amount of books, say \"2\"."}
+# headers = {"Content-Type": "application/json",
+#            "Authorization": "Bearer zu-..."}
+# r = requests.post(
+#     "https://zukijourney.xyzbot.net/v1/audio/speech", headers=headers, data=json.dumps(js)
+# )
+
+# print(r.content)
+# print(r.json())
+# print(r.text)
+# files = {"file": ("audio.mp3", r.content, "audio/mpeg")}
+# headers = {"Authorization": "Bearer zu-..."}
+# res = requests.post(headers=headers,url="https://zukijourney.xyzbot.net/v1/audio/transcriptions", files=files)
+# print(res.text)
+# print(res.json())
